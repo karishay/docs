@@ -540,10 +540,12 @@ Using ``/`` and ``/root`` directories for the document root
 Certain directories in the Linux file system are only readable by the ``root`` 
 user.  Such directories include ``/`` and ``/root``.  You should not be using 
 root-only directory locations for your document root.  This is because in most 
-setups and configurations of nginx, the worker processes are not running as root.
+setups and configurations of nginx, the worker processes are not running as 
+root.
 
-Most Linux systems have documentation on where web files shoudl be served from, but
-even if there is no documentation for your Linux operating system on where you should 
-store data to be served by webservers, ``/var/www`` is okay to put your site document 
-root(s), either in subfolders for your site or in that directory itself. You can then 
-give access to that directory for the user and/or group that nginx is running as.
+Most Linux systems have documentation on where web files shoudl be served from, 
+but even if there is no documentation for your Linux operating system on where 
+you should store data to be served by webservers, ``/var/www`` is okay to put 
+your site document root(s), either in subfolders for your site or in that 
+directory itself. You can then give access to that directory for the user 
+and/or group that nginx is running as.
