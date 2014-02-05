@@ -571,4 +571,4 @@ box.
 
 The `Filesystem Hierarchy Standard`_ defines where data should exist. You should
 definitely read it. The short version is that you want your web content to exist
-in either ``/var/www/`` or ``/srv``.
+in either ``/var/www/``, ``/srv``, ``/usr/share/www``.
