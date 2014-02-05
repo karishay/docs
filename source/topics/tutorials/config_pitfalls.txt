@@ -520,32 +520,55 @@ Using the Default Document Root
 -------------------------------
 
 Nginx packages that exist in Ubuntu, Debian, or other operating systems, as an
-easy-to-install package will often provide a 'default' configuration file as an
-example of configuration methods, and will often include a document root to hold
-a basic HTML file.
+easy-to-install package will often provide a 'default' configuration file as
+an example of configuration methods, and will often include a document root to
+hold a basic HTML file.
 
-Most of these packaging systems do not check to see if files are modified or exist
-within the default document root, which can result in code loss when the packages
-are upgraded. Experienced system administrators know that there is no expectation
-of the data inside the default document root to remain untouched during upgrades.
+Most of these packaging systems do not check to see if files are modified or
+exist within the default document root, which can result in code loss when the
+packages are upgraded. Experienced system administrators know that there is no
+expectation of the data inside the default document root to remain untouched
+during upgrades.
 
-You should not use the default document root for any site-critical files. There is
-no expectation that the default document root will be left untouched by the system
-and there is an extremely high possibility that your site-critical data may be lost
-upon updates and upgrades to the nginx packages for your operating system.
-    
-Using ``/`` and ``/root`` directories for the document root
------------------------------------------------------------
+You should not use the default document root for any site-critical files. There
+is no expectation that the default document root will be left untouched by the
+system and there is an extremely high possibility that your site-critical data
+may be lost upon updates and upgrades to the nginx packages for your operating
+system.
 
-Certain directories in the Linux file system are only readable by the ``root`` 
-user.  Such directories include ``/`` and ``/root``.  You should not be using 
-root-only directory locations for your document root.  This is because in most 
-setups and configurations of nginx, the worker processes are not running as 
-root.
+Not Using Standard Document Root Locations
+------------------------------------------
 
-Most Linux systems have documentation on where web files shoudl be served from, 
-but even if there is no documentation for your Linux operating system on where 
-you should store data to be served by webservers, ``/var/www`` is okay to put 
-your site document root(s), either in subfolders for your site or in that 
-directory itself. You can then give access to that directory for the user 
-and/or group that nginx is running as.
+Some directories in any file system should never be used for hosting data from.
+Some of these include ``/`` and ``root``. You should never use these as your
+document root.
+
+Doing this leaves you open to a request outside of your expected area returning
+private data.
+
+NEVER DO THIS!!! (yes, we have seen this)
+
+.. ngx:: warn
+
+    server {
+        root /;
+
+        location / {
+            try_files /web/$uri @php;
+        }
+
+        location @php {
+            [...]
+        }
+    }
+
+When a request is made for /foo, the request is passed to php because the file
+isn't found. This can appear fine, until a request in made for /etc/passwd.
+Yup, you just gave us a list of all users on that server. In some cases, the
+Nginx server is even set up run workers as root. Yup, we now have your user
+list as well as password hashes and how they've been hashed. We now own your
+box.
+
+The `Filesystem Hierarchy Standard`_ defines where data should exist. You should
+definitely read it. The short version is that you want your web content to exist
+in either ``/var/www/``, ``/srv``, ``/usr/share/www``.
