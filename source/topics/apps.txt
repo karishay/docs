@@ -14,3 +14,4 @@ Web Applications
 
 - :ref:`apps-alkaline`
 - :ref:`apps-drupal`
+- :ref:`apps-pmwiki`
