@@ -1,12 +1,17 @@
-.. _apps-alkaline:
+.. _recipe-alkaline:
 
 Alkaline
 ========
 
 This configuration can be used with a default installation of Alkaline v1.1.
 
-The Recipe
-----------
+Requirements
+------------
+
+* :ref:`tutorials-phpfpm`
+
+Recipe
+------
 
 .. ngx::
 

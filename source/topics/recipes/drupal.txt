@@ -1,12 +1,17 @@
-.. _apps-drupal:
+.. _recipe-drupal:
 
 Drupal
 ======
 
 Drupal is a bit of a beast of a PHP application.
 
-The Recipe
-----------
+Requirements
+------------
+
+* :ref:`tutorials-phpfpm`
+
+Recipe
+------
 
 .. ngx::
 
