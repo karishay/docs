@@ -55,7 +55,7 @@ The configuration uses a separated, reusable layout. It adds three files.
 		# drop common log errors
 		location = /robots.txt { access_log off; log_not_found off; }
 		location = /favicon.ico { access_log off; log_not_found off; }
-		location ~ /\. { access_log off; log_not_found off; allow all; }
+		location ~ /\. { access_log off; log_not_found off; deny all; }
 		location ~ ~$ { access_log off; log_not_found off; deny all; }
 	}
 
