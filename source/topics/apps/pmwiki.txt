@@ -18,11 +18,6 @@ The configuration uses a separated, reusable layout. It adds three files.
 
 .. ngx::
 
-	# /etc/nginx/conf.d/servers.conf
-	include server.d/*.conf;
-
-.. ngx::
-	# /etc/nginx/server.d/wiki.example.com.conf
 	server {
 		listen 80;
 		server_name wiki.example.com;
