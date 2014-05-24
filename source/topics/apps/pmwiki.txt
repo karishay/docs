@@ -1,4 +1,4 @@
-.. _apps-pmwiki:
+.. _recipe-pmwiki:
 
 PmWiki
 ======
