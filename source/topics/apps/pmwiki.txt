@@ -2,53 +2,50 @@
 
 PmWiki
 ======
+
 `PmWiki`_ is a wiki-based system for collaborative creation and maintenance of websites.
 
 Requirements
 ------------
+
 *Version:*
 	1.4.7 or >
 
 Recipe
 ----------
+
 The configuration uses a separated, reusable layout. It adds three files.
 
 .. ngx::
 
 	# /etc/nginx/conf.d/servers.conf
-	# Renich Bon Ciric <renich@evalinux.com>
 	include server.d/*.conf;
 
 .. ngx::
-	# /etc/nginx/server.d/wiki.example.tld.conf
-	# Renich Bon Ciric <renich@evalinux.com>
+	# /etc/nginx/server.d/wiki.example.com.conf
 	server {
 		listen 80;
 		listen 443 ssl;
-		server_name wiki.example.tld;
-		root /srv/www/pmwiki/example.tld/wiki/public;
+		server_name wiki.example.com;
+		root /srv/www/pmwiki/example.com/wiki/public;
 
 		include include.d/pmwiki.conf;
 		include include.d/common.conf;
 
-		error_log /var/log/nginx/wiki.example.tld-error.log;
+		error_log /var/log/nginx/wiki.example.com-error.log;
 	}
 
 .. ngx::
 
 	# /etc/nginx/include.d/pmwiki.conf
 	# PmWiki
-	# Renich Bon Ciric <renich@woralelandia.com>
 	 
-	## index
 	index pmwiki.php;
 	  
-	## deny
 	location ~ ^/(cookbook|local|scripts|wiki.d|wikilib.d) {
 		deny all;
 	}
 	   
-	## rewrite
 	location / { 
 		try_files $uri $uri/ @pmwiki; 
 	} 
@@ -57,8 +54,8 @@ The configuration uses a separated, reusable layout. It adds three files.
 		rewrite ^/(.*) /pmwiki.php?n=$1; 
 	}
 
-	## php
-		location ~ \.php$ {
+	## php configuration using unix sockets. 
+	location ~ \.php$ {
 		include /etc/nginx/fastcgi_params;
 		fastcgi_pass unix:/run/php-fpm/php-fpm.sock;
 	}
@@ -68,7 +65,7 @@ The configuration uses a separated, reusable layout. It adds three files.
 	# /etc/nginx/include.d/common.conf
 	# Common configuration
 	 
-	# cache
+	# cache configuration for most common files
 	location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
 		# Some basic cache-control for static files to be sent to the browser
 		expires max;
@@ -76,17 +73,18 @@ The configuration uses a separated, reusable layout. It adds three files.
 		add_header Cache-Control "public, must-revalidate, proxy-revalidate";
 	}
 	 
-	# drop
+	# drop common log errors
 	location = /robots.txt { access_log off; log_not_found off; }
 	location = /favicon.ico { access_log off; log_not_found off; }
 	location ~ /\. { access_log off; log_not_found off; allow all; }
 	location ~ ~$ { access_log off; log_not_found off; deny all; }
 	 
-	# log
+	# log requests
 	access_log /var/log/nginx/${host}-access.log;
 
 Notes
 -----
+
 * I've used php-fpm in socket mode. Please, go here for more info: 
   http://www.php.net/manual/en/install.fpm.configuration.php#listen
 * The distributed configuration is not a must. You can synthesize all of it into a
@@ -94,16 +92,20 @@ Notes
 
 Contributors
 ------------
+
 * Renich @ irc.freenode.net/#fedora
 * kolbyjack @ irc.freenode.net/#nginx
 
 References
 ----------
+
 * `PmWiki's Clean Urls`_
 
 .. _PmWiki's Clean Urls: http://www.pmwiki.org/wiki/Cookbook/CleanUrls
+
 .. _PmWiki: http://www.pmwiki.org/
 
 ..
 	/* vim: set tabstop=4 shiftwidth=4 textwidth=80: */ 
+
 	/* vim: set nowrap autoindent smartindent smarttab: */
