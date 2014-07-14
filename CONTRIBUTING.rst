@@ -69,8 +69,8 @@ be punched, so we require that all edits keep that from happening.
   * One blank line between pretty much everything
   * 80 character width (except code blocks)
   * Look at http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
-  * Yes, that's generic but not hard to follow. If needed, we'll ad more here.
   * Use example.com instead of domain.tld
+  * Yes, that's generic but not hard to follow. If needed, we'll add more here.
 
 * Content must be published under the license found in LICENSE.txt
 * All pages must be linked to in a sensible way
