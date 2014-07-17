@@ -22,3 +22,4 @@ Web Applications
 - :ref:`recipe-alkaline`
 - :ref:`recipe-drupal`
 - :ref:`recipe-pmwiki`
+- :ref:`recipe-mailman`
