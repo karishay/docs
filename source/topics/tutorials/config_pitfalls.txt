@@ -577,8 +577,8 @@ Using SSLv3 with HTTPS
 ----------------------
 
 Due to the POODLE vulnerability in SSLv3, it is advised to not use SSLv3 in your 
-SSL-enabled sites. You can very easily disable SSLv3 with this line, and provide
-the TLS protocols instead:
+SSL-enabled sites. You can very easily disable SSLv3 with this line and provide
+only the TLS protocols instead:
 
 .. ngx::
 
