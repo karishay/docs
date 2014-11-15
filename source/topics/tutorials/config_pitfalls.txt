@@ -554,7 +554,7 @@ NEVER DO THIS!!! (yes, we have seen this)
         root /;
 
         location / {
-            try_files /web/$uri @php;
+            try_files /web/$uri $uri @php;
         }
 
         location @php {
