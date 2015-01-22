@@ -573,6 +573,49 @@ The `Filesystem Hierarchy Standard`_ defines where data should exist. You should
 definitely read it. The short version is that you want your web content to exist
 in either ``/var/www/``, ``/srv``, ``/usr/share/www``.
 
+Using a Hostname to Resolve Addresses
+--------------------------------------
+
+BAD:
+
+.. ngx::
+
+    upstream {
+        server http://someserver;
+    }
+
+    server {
+        listen myhostname:80;
+        # [...]
+    }
+
+You should never use a hostname in a listen directive. While this may work, it
+will come with a large number of issues. One such issue being that the hostname
+may not resolve at boot time or during a service restart. This can cause Nginx
+to be unable to bind to the desired TCP socket which will prevent Nginx from
+starting at all.
+
+A safer practice is to know the IP address that needs to be bound to and use
+that address instead of the hostname. This prevents Nginx from needing to look
+up the address and removes dependencies on external and internal resolvers.
+
+This same issue applies to upstream locations. While it may not always be
+possible to avoid using a hostname in an upstream location, it is bad practice
+and will require careful considerations to prevent issues.
+
+GOOD:
+
+.. ngx::
+
+    upstream {
+        server http://10.48.41.12;
+    }
+
+    server {
+        listen 127.0.0.16:80;
+        # [...]
+    }
+
 Using SSLv3 with HTTPS
 ----------------------
 
