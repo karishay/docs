@@ -574,7 +574,7 @@ definitely read it. The short version is that you want your web content to exist
 in either ``/var/www/``, ``/srv``, ``/usr/share/www``.
 
 Using a Hostname to Resolve Addresses
---------------------------------------
+-------------------------------------
 
 BAD:
 
