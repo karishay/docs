@@ -600,8 +600,8 @@ that address instead of the hostname. This prevents Nginx from needing to look
 up the address and removes dependencies on external and internal resolvers.
 
 This same issue applies to upstream locations. While it may not always be
-possible to avoid using a hostname in an upstream location, it is bad practice
-and will require careful considerations to prevent issues.
+possible to avoid using a hostname in an upstream block, it is bad practice and
+will require careful considerations to prevent issues.
 
 GOOD:
 
