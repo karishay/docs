@@ -578,7 +578,7 @@ Using a Hostname to Resolve Addresses
 
 BAD:
 
-.. ngx::
+.. ngx:: warn
 
     upstream {
         server http://someserver;
