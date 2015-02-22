@@ -516,26 +516,6 @@ HTTP standard). This is done in order to prevent ambiguities when mapping
 headers to CGI variables as both dashes and underscores are mapped to
 underscores during that process.
 
-Using the Default Document Root
--------------------------------
-
-Nginx packages that exist in Ubuntu, Debian, or other operating systems, as an
-easy-to-install package will often provide a 'default' configuration file as
-an example of configuration methods, and will often include a document root to
-hold a basic HTML file.
-
-Most of these packaging systems do not check to see if files are modified or
-exist within the default document root, which can result in code loss when the
-packages are upgraded. Experienced system administrators know that there is no
-expectation of the data inside the default document root to remain untouched
-during upgrades.
-
-You should not use the default document root for any site-critical files. There
-is no expectation that the default document root will be left untouched by the
-system and there is an extremely high possibility that your site-critical data
-may be lost upon updates and upgrades to the nginx packages for your operating
-system.
-
 Not Using Standard Document Root Locations
 ------------------------------------------
 
@@ -572,6 +552,26 @@ box.
 The `Filesystem Hierarchy Standard`_ defines where data should exist. You should
 definitely read it. The short version is that you want your web content to exist
 in either ``/var/www/``, ``/srv``, ``/usr/share/www``.
+
+Using the Default Document Root
+-------------------------------
+
+Nginx packages that exist in Ubuntu, Debian, or other operating systems, as an
+easy-to-install package will often provide a 'default' configuration file as
+an example of configuration methods, and will often include a document root to
+hold a basic HTML file.
+
+Most of these packaging systems do not check to see if files are modified or
+exist within the default document root, which can result in code loss when the
+packages are upgraded. Experienced system administrators know that there is no
+expectation of the data inside the default document root to remain untouched
+during upgrades.
+
+You should not use the default document root for any site-critical files. There
+is no expectation that the default document root will be left untouched by the
+system and there is an extremely high possibility that your site-critical data
+may be lost upon updates and upgrades to the nginx packages for your operating
+system.
 
 Using a Hostname to Resolve Addresses
 -------------------------------------
