@@ -53,8 +53,7 @@ the ways that we expect all users and operators to adhere to.
   frequently, spamming the enter key, etc. are all forms of spam and are
   unwelcome. There is little tolerance for spam in the Nginx community. Just
   don't do it.
-* *Use Common Sense*: Common sense is in short supply these days, but it's
-  still expected that our users have and use it. As a general rule, treat
+* *Use Common Sense*: We expect our community to use common sense. As a general rule, treat
   everyone the way you would want to be treated. 
 
 This list is not inclusive. We will uphold the `Freenode Network Guidelines`_
